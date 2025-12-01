@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>Calendario de Adviento — Bienvenida Retro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: "Courier New", monospace;
+    padding: 0;
+  }
+
+  /* Intro */
+  #intro {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+  #intro h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+  #intro p {
+    font-size: 18px;
+  }
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    background: #fff;
+    margin-left: 4px;
+    animation: blink 0.8s infinite;
+    vertical-align: middle;
+    height: 22px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* Loading */
+  #loading {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  #loading p {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  .loading-box {
+    width: 350px;
+    height: 35px;
+    display: flex;
+    gap: 2px;
+    border: 2px solid #fff;
+    padding: 2px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  .segment {
+    flex: 1;
+    background: #000;
+    border: 1px solid #fff;
+    transition: background 0.2s;
+  }
+  .loading-box.fill .segment {
+    animation: fillSegment 0.3s forwards;
+  }
+  /* Delay por segmento */
+  .loading-box.fill .segment:nth-child(1)  { animation-delay: 0s; }
+  .loading-box.fill .segment:nth-child(2)  { animation-delay: 0.15s; }
+  .loading-box.fill .segment:nth-child(3)  { animation-delay: 0.3s; }
+  .loading-box.fill .segment:nth-child(4)  { animation-delay: 0.45s; }
+  .loading-box.fill .segment:nth-child(5)  { animation-delay: 0.6s; }
+  .loading-box.fill .segment:nth-child(6)  { animation-delay: 0.75s; }
+  .loading-box.fill .segment:nth-child(7)  { animation-delay: 0.9s; }
+  .loading-box.fill .segment:nth-child(8)  { animation-delay: 1.05s; }
+  .loading-box.fill .segment:nth-child(9)  { animation-delay: 1.2s; }
+  .loading-box.fill .segment:nth-child(10) { animation-delay: 1.35s; }
+  .loading-box.fill .segment:nth-child(11) { animation-delay: 1.5s; }
+  .loading-box.fill .segment:nth-child(12) { animation-delay: 1.65s; }
+  .loading-box.fill .segment:nth-child(13) { animation-delay: 1.8s; }
+  .loading-box.fill .segment:nth-child(14) { animation-delay: 1.95s; }
+  .loading-box.fill .segment:nth-child(15) { animation-delay: 2.1s; }
+  .loading-box.fill .segment:nth-child(16) { animation-delay: 2.25s; }
+  .loading-box.fill .segment:nth-child(17) { animation-delay: 2.4s; }
+  .loading-box.fill .segment:nth-child(18) { animation-delay: 2.55s; }
+  .loading-box.fill .segment:nth-child(19) { animation-delay: 2.7s; }
+  .loading-box.fill .segment:nth-child(20) { animation-delay: 2.85s; }
+
+  @keyframes fillSegment {
+    0% { background: #000; }
+    100% { background: #fff; }
+  }
+
+  /* Calendar */
+  .calendar {
+    display: none;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    max-width: 600px;
+    margin: 40px auto;
+  }
+  @media (max-width: 720px) { .calendar { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 480px) { .calendar { grid-template-columns: repeat(2, 1fr); } }
+
+  .door { perspective: 600px; }
+  .day {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    border: 1px dashed #fff;
+    cursor: pointer;
+    color: #fff;
+    transform-origin: left center;
+    transition: transform 0.6s ease;
+    backface-visibility: hidden;
+  }
+  .day span { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; }
+  .day.locked { cursor: pointer; }
+  .day.open { transform: rotateY(-120deg); }
+
+  /* Modal */
+  #modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    display: none;
+    padding: 40px;
+  }
+  #modalContent {
+    max-width: 600px;
+    margin: 0 auto;
+    white-space: normal;
+    font-family: "Courier New", monospace;
+    color: #fff;
+    text-align: justify;
+  }
+  #modalContent img, 
+  #modalContent video, 
+  #modalContent iframe {
+    max-width: 100%;
+    margin: 20px 0;
+    display: block;
+  }
+  .close {
+    display: block;
+    margin: 60px auto 0;
+    padding: 10px 20px;
+    border: 1px dashed #fff;
+    cursor: pointer;
+    width: fit-content;
+    text-align: center;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="intro">
+  <h1>--- BIENVENIDO AL CALENDARIO DE ADVIENTO ---</h1>
+  <p>Presiona ENTER o haz clic para continuar<span class="cursor"></span></p>
+</div>
+
+<div id="loading">
+  <p>loading...</p>
+  <div class="loading-box">
+    <!-- 20 segmentos -->
+    <div class="segment"></div><div class="segment"></div><div class="segment"></div><div class="segment"></div>
+    <div class="segment"></div><div class="segment"></div><div class="segment"></div><div class="segment"></div>
+    <div class="segment"></div><div class="segment"></div><div class="segment"></div><div class="segment"></div>
+    <div class="segment"></div><div class="segment"></div><div class="segment"></div><div class="segment"></div>
+    <div class="segment"></div><div class="segment"></div><div class="segment"></div><div class="segment"></div>
+  </div>
+</div>
+
+<div class="calendar" id="calendar"></div>
+
+<div id="modal">
+  <div id="modalContent"></div>
+  <div class="close" onclick="closeModal()">--- volver al calendario ---</div>
+</div>
+
+<script>
+/* -------------------------
+   CONTENIDO DEL CALENDARIO
+   AQUÍ PUEDES PONER HTML
+--------------------------*/
+const dataHTML = {
+  1: `
+    <p>Bienvenida al día 1.</p>
+  `,
+  2: `
+    <p>Día 2 con un video de YouTube.</p>
+<img src="fotos/ejemplo.jpg">
+<video src="videos/ejemplo.mp4" controls></video>
+<iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+  `,
+  3: `<p>Día 3 — texto normal.</p>`,
+  4: `<p>Día 4.</p>`,
+
+  /* Añade aquí hasta 24 */
+  24: `<p>Feliz día 24 </p>`
+};
+
+
+
+/* -------------------------
+      LÓGICA DEL CALENDARIO
+--------------------------*/
+const today = new Date().getDate();
+const cal = document.getElementById('calendar');
+let activeDay = null;
+
+function formatDate(day) {
+  return `${day} de Diciembre`;
+}
+
+for (let i = 1; i <= 24; i++) {
+  const door = document.createElement('div');
+  door.className = 'door';
+  const btn = document.createElement('div');
+  btn.className = 'day';
+  const span = document.createElement('span');
+  span.textContent = i;
+  btn.appendChild(span);
+
+  if (i > today) {
+    btn.classList.add('locked');
+    btn.addEventListener('click', () => {
+      openModalMessage("¿Estás intentando adelantarte al día que toca o no sabes a qué día estamos?");
+    });
+  } else {
+    btn.addEventListener('click', () => {
+      btn.classList.add('open');
+      activeDay = btn;
+      setTimeout(() => openModalContent(i), 500);
+    });
+  }
+
+  door.appendChild(btn);
+  cal.appendChild(door);
+}
+
+function openModalContent(day) {
+document.getElementById('modalContent').innerHTML =
+  `<p style="text-align:left; margin-bottom:20px;">${formatDate(day)}</p>` +
+  dataHTML[day];
+  document.getElementById('modal').style.display = 'block';
+}
+
+function openModalMessage(msg) {
+  document.getElementById('modalContent').innerHTML = `<p>${msg}</p>`;
+  document.getElementById('modal').style.display = 'block';
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+  if(activeDay) activeDay.classList.remove('open');
+  activeDay = null;
+}
+
+function startCalendar() {
+  document.getElementById('intro').style.display = 'none';
+  const loading = document.getElementById('loading');
+  loading.style.display = 'flex';
+  const box = document.querySelector('.loading-box');
+  box.classList.add('fill');
+
+  setTimeout(() => {
+    loading.style.display = 'none';
+    document.getElementById('calendar').style.display = 'grid';
+    box.classList.remove('fill');
+  }, 3200);
+}
+
+document.getElementById('intro').addEventListener('click', startCalendar);
+window.addEventListener('keydown', e => { if(e.key === 'Enter') startCalendar(); });
+window.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
+document.getElementById('modal').addEventListener('click', e => { if(e.target.id === 'modal') closeModal(); });
+</script>
+
+</body>
+</html>
