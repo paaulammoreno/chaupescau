@@ -77,7 +77,6 @@
   .loading-box.fill .segment {
     animation: fillSegment 0.3s forwards;
   }
-  /* Delay por segmento */
   .loading-box.fill .segment:nth-child(1)  { animation-delay: 0s; }
   .loading-box.fill .segment:nth-child(2)  { animation-delay: 0.15s; }
   .loading-box.fill .segment:nth-child(3)  { animation-delay: 0.3s; }
@@ -138,21 +137,25 @@
     background: rgba(0,0,0,0.92);
     display: none;
     padding: 40px;
+    overflow-y: auto;
   }
   #modalContent {
+    width: 90%;
     max-width: 600px;
     margin: 0 auto;
     white-space: normal;
     font-family: "Courier New", monospace;
     color: #fff;
     text-align: justify;
+    word-wrap: break-word;
   }
   #modalContent img, 
   #modalContent video, 
   #modalContent iframe {
     max-width: 100%;
-    margin: 20px 0;
+    height: auto;
     display: block;
+    margin: 20px 0;
   }
   .close {
     display: block;
@@ -193,36 +196,25 @@
 </div>
 
 <script>
-/* -------------------------
-   CONTENIDO DEL CALENDARIO
-   AQUÍ PUEDES PONER HTML
---------------------------*/
 const dataHTML = {
   1: `
     <p>No sé en qué momento pasamos del calendario de adviento de ventanitas de cartulina con figuras de chocolate al de cajitas de cartón con pequeños regalos. No sé si tuvo que ver con que yo empezara a ver el chocolate de otra manera, o si simplemente fue una idea de algún tiktok, o si la tía Fina nos dio las cajas, o si quizá fue una confluencia de todos esos factores. Quizá a veces las cosas que suceden no son más que eso, una confluencia de eventos, pero el caso es que pasamos de las ventanitas de cartulina a las cajitas de cartón.</p>
     <p>Este año, quizá porque con la mudanza las cajas terminaron en la basura, quizá porque la vida a veces nos atropella, quizá porque ni siquiera se nos había ocurrido, o quizá, de nuevo, por una confluencia de todo ello, no habrá calendario de cajitas de cartón ni de ventanitas de cartulina. Mientras tanto, las luces de las calles siguen encendidas, y el bloque de la esquina ya está adornado con árboles de Navidad idénticos con sus idénticas estrellas. El balcón del cuarto tercera mantiene el mismo aspecto de siempre, salvo quizá alguna decoración un poco hortera que apenas se nota desde la calle. Y, sin embargo, parece que todo ha cambiado.</p>
     <p>Así que este año he decidido hacer un calendario digital. He codificado un poquito de html (Google Gemini te como la boca) y no sé si funcionará a la perfección, pero mi idea es que cada día aparezca un texto, una imagen, un vídeo o un audio. Lo iré construyendo un poco sobre la marcha, pero creo que puede quedar bonito y alegrarnos un poco cada día.</p>
-    <p> Os quiero mucho. Un abrazo,</p>
-    <p>Paula. </p>
+    <p>Os quiero mucho. Un abrazo,</p>
+    <p>Paula.</p>
   `,
   2: `
     <p>Día 2 con un video de YouTube.</p>
-<img src="fotos/ejemplo.jpg">
-<video src="videos/ejemplo.mp4" controls></video>
-<iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+    <img src="fotos/ejemplo.jpg" alt="Imagen Día 2">
+    <video src="videos/ejemplo.mp4" controls></video>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
   `,
   3: `<p>Día 3 — texto normal.</p>`,
   4: `<p>Día 4.</p>`,
-
-  /* Añade aquí hasta 24 */
-  24: `<p>Feliz día 24 </p>`
+  24: `<p>Feliz día 24</p>`
 };
 
-
-
-/* -------------------------
-      LÓGICA DEL CALENDARIO
---------------------------*/
 const today = new Date().getDate();
 const cal = document.getElementById('calendar');
 let activeDay = null;
@@ -258,9 +250,9 @@ for (let i = 1; i <= 24; i++) {
 }
 
 function openModalContent(day) {
-document.getElementById('modalContent').innerHTML =
-  `<p style="text-align:left; margin-bottom:20px;">${formatDate(day)}</p>` +
-  dataHTML[day];
+  document.getElementById('modalContent').innerHTML =
+    `<p style="text-align:left; margin-bottom:20px; font-weight: normal;">${formatDate(day)}</p>` +
+    dataHTML[day];
   document.getElementById('modal').style.display = 'block';
 }
 
