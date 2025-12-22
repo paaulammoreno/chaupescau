@@ -25,9 +25,23 @@
     text-align: center;
     padding: 20px;
   }
-  #intro h1 { font-size: 28px; margin-bottom: 20px; font-weight: 300; }
-  #intro p { font-size: 18px; }
-  .cursor { display: inline-block; width: 10px; background: #fff; margin-left: 4px; animation: blink 0.8s infinite; vertical-align: middle; height: 22px; }
+  #intro h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+  #intro p {
+    font-size: 18px;
+  }
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    background: #fff;
+    margin-left: 4px;
+    animation: blink 0.8s infinite;
+    vertical-align: middle;
+    height: 22px;
+  }
   @keyframes blink { 50% { opacity: 0; } }
 
   /* Loading */
@@ -40,7 +54,10 @@
     align-items: center;
     flex-direction: column;
   }
-  #loading p { margin-bottom: 20px; font-size: 20px; }
+  #loading p {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
   .loading-box {
     width: 350px;
     height: 35px;
@@ -51,8 +68,15 @@
     box-sizing: border-box;
     overflow: hidden;
   }
-  .segment { flex: 1; background: #000; border: 1px solid #fff; transition: background 0.2s; }
-  .loading-box.fill .segment { animation: fillSegment 0.3s forwards; }
+  .segment {
+    flex: 1;
+    background: #000;
+    border: 1px solid #fff;
+    transition: background 0.2s;
+  }
+  .loading-box.fill .segment {
+    animation: fillSegment 0.3s forwards;
+  }
   .loading-box.fill .segment:nth-child(1)  { animation-delay: 0s; }
   .loading-box.fill .segment:nth-child(2)  { animation-delay: 0.15s; }
   .loading-box.fill .segment:nth-child(3)  { animation-delay: 0.3s; }
@@ -74,7 +98,10 @@
   .loading-box.fill .segment:nth-child(19) { animation-delay: 2.7s; }
   .loading-box.fill .segment:nth-child(20) { animation-delay: 2.85s; }
 
-  @keyframes fillSegment { 0% { background: #000; } 100% { background: #fff; } }
+  @keyframes fillSegment {
+    0% { background: #000; }
+    100% { background: #fff; }
+  }
 
   /* Calendar */
   .calendar {
@@ -140,16 +167,6 @@
     text-align: center;
     text-decoration: none;
   }
-
-  /* Carrusel día 22 */
-  .carousel22 { text-align: center; }
-  .carousel22 img { width: 100%; display: none; border-radius: 10px; }
-  .carousel22 img.active { display: block; }
-  .carousel-buttons { margin-top: 10px; display: flex; justify-content: center; gap: 10px; }
-  .carousel-buttons button {
-    padding: 8px 16px; border: none; background: #000; color: #fff; cursor: pointer; border-radius: 5px;
-  }
-  .carousel-buttons button:hover { background: #333; }
 </style>
 </head>
 <body>
@@ -180,8 +197,481 @@
 
 <script>
 const dataHTML = {
-  // … aquí van todos los días anteriores (1–21) tal cual los tienes …
+  1: `
+    <p>No sé en qué momento pasamos del calendario de adviento de ventanitas de cartulina con figuras de chocolate al de cajitas de cartón con pequeños regalos. No sé si tuvo que ver con que yo empezara a ver el chocolate de otra manera, o si simplemente fue una idea de algún tiktok, o si la tía Fina nos dio las cajas, o si quizá fue una confluencia de todos esos factores. Quizá a veces las cosas que suceden no son más que eso, una confluencia de eventos, pero el caso es que pasamos de las ventanitas de cartulina a las cajitas de cartón.</p>
+    <p>Este año, quizá porque con la mudanza las cajas terminaron en la basura, quizá porque la vida a veces nos atropella, quizá porque ni siquiera se nos había ocurrido, o quizá, de nuevo, por una confluencia de todo ello, no habrá calendario de cajitas de cartón ni de ventanitas de cartulina. Mientras tanto, las luces de las calles siguen encendidas, y el bloque de la esquina ya está adornado con árboles de Navidad idénticos con sus idénticas estrellas. El balcón del cuarto tercera mantiene el mismo aspecto de siempre, salvo quizá alguna decoración un poco hortera que apenas se nota desde la calle. Y, sin embargo, parece que todo ha cambiado.</p>
+    <p>Así que este año he decidido hacer un calendario digital. He codificado un poquito de html (Google Gemini te como la boca) y no sé si funcionará a la perfección, pero mi idea es que cada día aparezca un texto, una imagen, un vídeo o un audio. Lo iré construyendo un poco sobre la marcha, pero creo que puede quedar bonito y alegrarnos un poco cada día.</p>
+    <p>Os quiero mucho. Un abrazo,</p>
+    <p>Paula.</p>
+  `,
+  2: `
+    <p>Hoy os dejo esta joyita un poco más divertida que sinó mama llora:</p>
+    <video src="videos/aramsamsam.mp4" controls></video>
+  `,
+  3: `<p>Dicen que nuestros cuerpos reemplazan regularmente a muchas de las casi 30 billones de células que nos forman. Los glóbulos rojos se sustituyen cada cuatro meses, los glóbulos blancos pueden durar hasta un año, las células del intestino se renuevan cada cuatro días y las de las pestañas se regeneran aproximadamente cada dos meses.</p>
+
+<p>Millones de células mueren y nacen en nuestro cuerpo en un ciclo que me parece casi poético. Cada segundo morimos y nacemos un poco en un baile silencioso y constante que nos mantiene en equilibrio. Es raro y frágil y bonito a la vez estar formados por un flujo de principios y finales que se encadenan con cada respiración, como una coreografía de una canción que comienza y termina y se repite con el ritmo de cada latido. Bum bum, bum bum.</p>
+
+<p>Dicen que las células de la piel se regeneran cada 28 días. Esto significa que he habitado más de 282 pieles distintas. Esto significa que si desde el 6 de agosto de 1976 han pasado 18 017 días, mamá está a mitad de camino de su piel número 643. Esto significa que si desde el 15 de octubre de 2006 han pasado 6 990 días, Elsa está a punto de estrenar su piel número 250; y que si han pasado 6 146 días desde el 5 de febrero de 2009, Ana vive ahora en su piel 219.</p>
+
+<p>Dicen también que existen células de nuestro cuerpo que nos acompañan toda la vida. Algunas neuronas del cerebro, alguna célula de los ojos y del corazón. Las que han visto y oído y recordado y amado. Quizás por eso, aunque el cuerpo se renueve sin descanso, hay cosas que permanecen. El sonido inconfundible de unas pisadas por el pasillo, un ritmo de respiración familiar, una risa característica, una cierta forma de mirar y hablar y abrazar: entre tantos ciclos de principios y finales, un algo o un alguien que sigue siendo hogar.</p>`,
+  4: `
+    <p>En bucle:</p>
+    <audio controls>
+      <source src="audios/caballito.mp3" type="audio/mpeg">
+      Tu navegador no soporta el elemento <code>audio</code>.
+    </audio>
+  `,
+
+ 5: `
+<p>Esto es un poema (?) que escribí hace unos 2 años, os lo dejo por aquí:</p>
+
+<div style="font-family: 'Times New Roman', serif; background-color: #ffffff; color: #000000; padding: 20px; border-radius: 10px;">
+
+<p>potser m’agrada tant el mar perquè en el mar he estat feliç<br>
+perquè el mar som l’elsa, l’ana i jo, la sal a la pell i la sorra entre els peus<br>
+perquè el mar és fer castells i guerres d’aigua, buscar petxines<br>
+i córrer sobre la sorra bullint</p>
+
+<p>córrer sobre la sorra bullint i riure encara que els peus ens cremessin perquè sabíem que corríem cap a l’aigua</p>
+
+<p>jugar a ser sirenes,<br>
+encara que sempre em tocava fer de tauró<br>
+i perseguir l’elsa i l’ana mentre el papa vigilava des de la tovallola<br>
+i em xiulava si travessava la boia</p>
+
+<p>saltar les onades fins que el sol es començava a amagar<br>
+i els reflexos de l’aigua es tornaven taronges<br>
+com un missatge del mar que anunciava l’hora de treure’ns la sorra i tornar a casa</p>
+
+<p>potser m’agrada tant el mar perquè en l’aigua deixo de ser un cos</p>
+
+<p>potser estirar-se sobre les onades és el més semblant a volar i potser banyar-se al mar és tornar al ventre matern</p>
+
+<p>potser el respirar de les onades són els batecs del cor</p>
+
+<p>a vegades m’agradaria que les llàgrimes es perdessin en l’aigua salada</p>
+
+<p>a vegades m’agradaria que les onades s’enduguessin el dolor</p>
+
+<p>a vegades penso que l’aigua és la mateixa que m’ha vist des que vaig néixer, despullada i coberta de crema</p>
+
+<p>que l’aigua és la mateixa que ha vist a la nena de sis anys que ja portava banyador i la noia que vaig ser després en bikini</p>
+
+<p>que és la mateixa aigua on el papa va dir que havia retornat al nostre primer peix quan va morir<br>
+les tres vam pensar que havia portat el naranjita a la platja<br>
+i que estaria feliç amb els seus germans<br>
+anys després ens va dir que l’havia llençat pel vàter</p>
+
+<p>a vegades penso que l’aigua conté tot el que he estat, sóc i seré</p>
+
+<p>que és la mateixa aigua on passàvem les tardes les del bàsquet amb reggaeton sonant a l’altaveu i els primers paquets de tabac sobre la tovallola</p>
+
+<p>que és la mateixa aigua on em vaig donar el primer petó<br>
+la mateixa aigua on potser un dia hi portaré els meus fills, si en tinc,<br>
+la mateixa aigua on cada any veurem els focs artificials<br>
+fins que el nostre cos es torni vell i arrugat</p>
+
+<p>la mateixa aigua on vull que algun dia llencin les meves cendres<br>
+completant un cercle silenciós</p>
+
+<p>a vegades penso en com en el mar les hores no passen<br>
+i, alhora, en com l’aigua ens arruga les mans<br>
+de la mateixa manera que el temps ens arruga la pell</p>
+
+<p>a vegades penso en quina és la línia entre les arrugues de la pell i les de l’aigua<br>
+entre que el mar arrugui les mans i que les mans arruguin el mar</p>
+
+<p>a vegades penso en fins on arriba el mar,<br>
+en quina és la línia entre el que és el mar i el que ja no ho és</p>
+
+<p>en quina és la línia entre entrar al mar i que el mar entri dins teu</p>
+
+<p>en quina és la línia entre que les onades t’abracin i que el mar t’ofegui</p>
+
+<p>en quina és la línia entre un crit molt llarg i un llarg silenci</p>
+
+<p>potser m’agrada tant el mar perquè en el mar he estat feliç<br>
+perquè el mar som l’elsa, l’ana i jo, la sal a la pell i la sorra entre els peus</p>
+  </div>
+`,
+6 : `
+<p>Arma de fuego para la cena de Navidad:</p>
+ <img src="fotos/foto1.png" alt="">
+`,
+
+  7: `
+    <p>Más vale tarde que nunca:</p>
+    <video src="videos/abus.mp4" controls></video>
+  `,
+
+  8: `
+<div style="background:#fff; padding:20px; margin:20px 0; text-align:center;">
+  <img src="fotos/1.jpg" alt="Foto 1" style="max-width:100%; height:auto;">
+</div>
+
+<div style="background:#fff; padding:20px; margin:20px 0; text-align:center;">
+  <img src="fotos/2.jpg" alt="Foto 2" style="max-width:100%; height:auto;">
+</div>
+
+<div style="background:#fff; padding:20px; margin:20px 0; text-align:center;">
+  <img src="fotos/3.jpg" alt="Foto 3" style="max-width:100%; height:auto;">
+</div>
+`,
+
+9 :  `
+<p>Desde 2003, la artista catalana Isabel Banal empezó a recortar y guardar todas las figuras cargadas que encontraba en fotografías de periódicos y revistas. Las hojeaba, las arrancaba con cuidado y las iba pegando sobre páginas en blanco de un bloc de notas. Creo que era una forma de pensar sobre la idea de carga, de pensar sobre el hecho de que siempre transportamos algo de un lugar a otro, que no dejamos de trajinar, de mover el peso; el peso visible, el peso invisible.</p> 
+<p>Mujeres que iban a por agua, mujeres que transportaban gallinas, mujeres que llevaban la cosecha recogida en sus faldas. Una cesta, un cuévano, un cubo, una canasta, unas cazuelas con cocido, una caja de fruta, un bidón de agua, un carrito de la compra. El pan, la piedra.</p> 
+<p>A lo largo de la historia han sido mujeres anónimas quienes día a día se han encargado de alimentar a otros, de sostener el cuidado de toda la familia. Cargar para nutrir, para proteger, para cuidar.</p> 
+<p>Pienso en imágenes que vemos por la calle: mujeres cargando bolsas de la compra, mujeres cargando garrafas, mujeres empujando un carrito, mujeres cargando en brazos a un niño pequeño. Esta es la condición histórica de la mujer.</p> 
+<p>Pienso en la abuela llevando al abuelo del brazo, pienso en las fotos de mamá empujando el carrito con Elsa dentro y yo subida detrás mientras llevaba a Ana de apenas unos meses en la mochila, pienso en mujeres cargando mujeres que cargan mujeres que cargan mujeres. Pienso en todo lo que llevamos encima. Y en que, al final, las cosas pesan menos cuando el peso se reparte.</p>
+`,
+
+10 : `
+    <p>Hoy le toca a mamá:</p>
+    <video src="videos/mama1.mp4" controls></video>
+    <video src="videos/mama2.mp4" controls></video>  `,
+
+11 : `
+<p>Lugares donde he sido feliz:</p>
+
+<p> - El sofá rojo y pequeñito de la otra casa. Nos tapábamos con la manta blanca mientras veíamos la tele. Recuerdo amontonarnos y hacer una montaña, una encima de la otra, hasta que crujía.</p>
+
+<p> - La habitación de los abus. El armario gigante de la abuela; para nosotras, todos sus vestidos eran disfraces de princesa.</p>
+
+<p> - La cocina del pueblo. En invierno, desayunar leche caliente y rosquillas con la estufa bajo la mesa; en verano, cenar rápido para ir a jugar a la liebre. El sillón verde de la Maruja. Escuchar las campanas marcando las horas.</p>
+
+<p> - El jardín de Bosques. Esconder el cocodrilo entre las plantas, en el lugar donde años más tarde haríamos nuestro primer entierro.</p>
+
+<p> - La playa, por razones obvias (mirar entrada del día 5).</p>
+
+<p> - El parque del gusano. Más tarde lo cambiaríamos por el parque pirata primero, y por el de la tirolina después.</p>
+
+<p> - Las duchas del pabellón. Después de un partido, meter a la Silvia en la ducha con ropa. La Cris cantando reggaetón.</p>
+
+<p> - El refugi Colomina. Llegar cansados después de la ruta y comer sopa de galets. Ponerse unas crocs viejas y que sean lo más cómodo del mundo. Dormir sorprendentemente bien en una litera sucia escuchando a los demás roncar.</p>
+
+<p>Creo que si continuara pensando encontraría muchos más. Creo que quizá lo especial no ha sido nunca el sitio. ¿Cuáles son vuestros lugares felices? ¿Quiénes los llenan?</p>
+`,
+12: `
+  <p>Para acabar con fuerza la semana:)</p>
+  <iframe style="border-radius:12px" 
+          src="https://open.spotify.com/embed/track/30OwZBclxOiB8FfDKr0s88?utm_source=generator" 
+          width="100%" 
+          height="152" 
+          frameBorder="0" 
+          allowfullscreen="" 
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+  </iframe>
+`,
+
+
+14: `
+    <p>Hoy la abuela nos envía su carta a los reyes:</p>
+  <div style="font-family: 'Times New Roman', serif; background-color: #ffffff; color: #000000; padding: 20px; border-radius: 10px;">
+  <p>Queridas nietas Ana, Elsa y Paula , voy a escribir la carta a los reyes para ver si mis deseos  se cumplen y me regalan todo lo que quiero.</p>
+<p>NO quiero perfurmes ,ni ropa y nada físico. solo quiero. qué cuando podáis me regaláis un ratito de vuestra compañía, qué me hagáis participes de vuestros sueños, y de vuestros fracasos,  de vuestros amores y desamores, quiero estar dentro de vuestras vidas, porque vosotras estáis en la mía.</p>
+  </div>
   
+    <p>Por otro lado, fotones de ayer:</p>
+ <img src="fotos/concierto1.jpg" alt="">
+ <img src="fotos/concierto2.jpg" alt="">
+
+`,
+
+15: `
+<p>Buenos días, ya que a mamá no le gusta que digamos follar, aquí os dejo alguna alternativa.</p>
+
+<div style="font-family:'Times New Roman', serif; background:#ffffff; color:#000000; padding:25px; border-radius:10px;">
+
+<p style="font-weight:bold; font-size:1.4em; margin-bottom:25px;">
+Maneras de decir “follar”
+</p>
+
+<p><strong>Relacionados con lo animal, lo vegetal y lo alimenticio</strong></p>
+<p>Enterrar el nabo</p>
+<p>Mojar el churro</p>
+<p>Echar un pistacho</p>
+<p>Regar el helecho</p>
+<p>Llevarse a alguien al huerto</p>
+<p>Untar el panecillo</p>
+<p>Echarle carne al taco</p>
+<p>Rellenar el pavo</p>
+<p>Hacer el salto del tigre</p>
+<p>Sembrar la parcela</p>
+<p>Abonar la tierra</p>
+<p>Pelarle el plátano</p>
+<p>Meter la longaniza</p>
+<p>Remover la ensalada</p>
+<p>Batir el huevo</p>
+<p>Escurrir el limón</p>
+<p>Pelar la patata</p>
+<p>Amasar la masa</p>
+<p>Rajar el melón</p>
+<p>Servir el postre</p>
+<p>Vaciar los huevos de amor</p>
+<p>Gratinar el mollete</p>
+<p>Dar carne en barra</p>
+<p>Ordeñar el pepino</p>
+<p>Meterla en adobo</p>
+<p>Bañar a la nutria</p>
+<p>Echar el pelao a la zanja</p>
+<p>Rebozar la croqueta</p>
+<p>Hacer mayonesa casera</p>
+<p>Escupir el chicle</p>
+<p>Hacer caldo espeso</p>
+
+<br>
+
+<p><strong>Los de persona nacida en otro siglo</strong></p>
+<p>Retozar</p>
+<p>Copular</p>
+<p>Fornicar</p>
+<p>Aparearse</p>
+<p>Yacer</p>
+<p>Ayuntarse</p>
+<p>Consumarse</p>
+<p>Holgar</p>
+<p>Triscar</p>
+<p>Solazarse</p>
+<p>Unirse carnalmente</p>
+
+<br>
+
+<p><strong>Los de los niños rata / generación gamer</strong></p>
+<p>Meter el pen drive</p>
+<p>Meter el sable láser</p>
+<p>Echar un Fortnite</p>
+<p>Pasarse el nivel juntos</p>
+<p>Jugar en cooperativo</p>
+<p>Activar el modo difícil</p>
+<p>Hacer un speedrun</p>
+<p>Guardar la partida</p>
+<p>Derrotar al boss final</p>
+
+<br>
+
+<p><strong>Los creativos</strong></p>
+<p>Sacar a pasear el unicornio</p>
+<p>Dejar ciego al cíclope</p>
+<p>Buscar a Nemo</p>
+<p>Bailar dembow desnudos</p>
+<p>Poner a prueba la suspensión trasera</p>
+<p>Remover el ato</p>
+<p>Hacer un shake weight</p>
+<p>Meter al preso en la cárcel</p>
+<p>Sacarle conejo al choclo</p>
+<p>Aparcar en garaje ajeno</p>
+<p>Hacer sonar el somier</p>
+<p>Afinar el instrumento</p>
+<p>Hacer temblar los cimientos</p>
+<p>Tocar a rebato</p>
+<p>Desatascar el desagüe</p>
+
+<br>
+
+<p><strong>Los que puedes usar si eres miembro de Vox</strong></p>
+<p>Procrear</p>
+<p>Jugar a las mamás y a los papás</p>
+<p>Hacer hijos</p>
+<p>Perpetuar la especie</p>
+<p>Cumplir con el mandato de Dios</p>
+<p>Consumar el matrimonio</p>
+<p>Intimar</p>
+<p>Unirse en sagrado vínculo</p>
+<p>Sellar la unión</p>
+
+<br>
+
+<p><strong>Bélicos y/o relacionados con la violencia</strong></p>
+<p>Hundir el sable</p>
+<p>Empalar</p>
+<p>Echar un uno contra uno</p>
+<p>Vaciar el cargador</p>
+<p>Desenfundar el sable</p>
+<p>Asaltar la plaza</p>
+<p>Tomar la fortaleza</p>
+<p>Entrar a bayoneta</p>
+<p>Romper el frente</p>
+<p>Invadir territorio enemigo</p>
+<p>Meter pelo</p>
+<p>Meter el puro con venas</p>
+<p>Meterlo todo</p>
+
+<br>
+
+<p><strong>Los de persona preocupada por el calentamiento global</strong></p>
+<p>Echar un casquete polar</p>
+<p>Meterla en caliente</p>
+<p>Generar energía renovable</p>
+<p>Reducir la huella de carbono juntos</p>
+<p>Producir calor humano</p>
+
+<br>
+
+<p><strong>Los románticos</strong></p>
+<p>Hacer el amor</p>
+<p>Amar</p>
+<p>Regar la margarita</p>
+<p>Fundirse en uno</p>
+<p>Entregarse</p>
+<p>Compartir intimidad</p>
+<p>Dormir piel con piel</p>
+<p>Unirse por amor</p>
+
+<br>
+
+<p><strong>Los propios de un niño de sexto de primaria</strong></p>
+<p>Hacer el ñaca ñaca</p>
+<p>Jugar al teto</p>
+<p>Jugar a la piragua</p>
+<p>Jugar al delfín</p>
+<p>Jugar a la trucha</p>
+<p>Jugar al cepillo</p>
+<p>Tras tras por detrás</p>
+<p>Darle al mete saca</p>
+<p>Bailar el chiqui chiqui</p>
+<p>Tuku Tuku Taka Taka</p>
+<p>Hacer cosquillas raras</p>
+
+<br>
+
+<p><strong>Los clásicos</strong></p>
+<p>Echar un kiki</p>
+<p>Echar un polvo</p>
+<p>Echar un pinchito</p>
+<p>Mojar</p>
+<p>Chingar</p>
+<p>Echar una canita al aire</p>
+<p>Chuscar</p>
+<p>Tirarse a alguien</p>
+<p>Echar un clavo</p>
+<p>Tener tema</p>
+<p>Pasarse a alguien por la piedra</p>
+<p>Echar un casquete</p>
+<p>Zumbar</p>
+<p>Montar</p>
+<p>Pinchar</p>
+<p>Jincar</p>
+<p>Trajinar</p>
+<p>Meter</p>
+<p>Menear</p>
+<p>Empotrar</p>
+<p>Taladrar</p>
+<p>Bombear</p>
+<p>Cardar</p>
+<p>Cepillar</p>
+<p>Apretar</p>
+<p>Darle</p>
+<p>Arremeter</p>
+
+<br>
+
+<p><strong>Otros</strong></p>
+<p>Dar duro con blando</p>
+<p>Sacarle punta al lápiz</p>
+<p>Darle a la mandanga</p>
+<p>Cepillarse a alguien</p>
+<p>Poner mirando pa Cuenca</p>
+<p>Dar candela</p>
+<p>Despertar a los vecinos</p>
+<p>Beneficiarse a alguien</p>
+<p>Practicar el coito</p>
+<p>Cambiar el aceite</p>
+<p>Poner a veinte uñas</p>
+<p>Darle pal pelo</p>
+<p>Explorar la cueva</p>
+<p>Hacer saltar los muelles</p>
+<p>Echar el resto</p>
+<p>Montar el espectáculo</p>
+
+<br>
+
+<p><strong>En català (defensem la llengua!)</strong></p>
+<p>Cardar</p>
+<p>Cardar-se’n (algú)</p>
+<p>Fotre un clau</p>
+<p>Clavar un clau</p>
+<p>Fer l’amor</p>
+<p>Fer sexe</p>
+<p>Tenir sexe</p>
+<p>Practicar sexe</p>
+<p>Tenir relacions sexuals</p>
+<p>Mantenir relacions sexuals</p>
+<p>Copular</p>
+<p>Fornicar</p>
+<p>Fer coit</p>
+<p>Fer-ho</p>
+<p>Muntar</p>
+<p>Petar</p>
+<p>Xinar</p>
+<p>Picar</p>
+<p>Boixar</p>
+<p>Anar a la feina</p>
+<p>Sucarrar</p>
+<p>Pitjar</p>
+<p>Rostollar</p>
+<p>Jaure (amb algú)</p>
+<p>Consumar (el matrimoni)</p>
+<p>Cohabitar</p>
+<p>Tenir tractes carnals</p>
+<p>Unir-se carnalment</p>
+<p>Fer-li la clenxa al mig</p>
+<p>Fer un carquinyoli</p>
+<p>Fer margeres</p>
+<p>Barrinar</p>
+<p>Llaurar el bancalet</p>
+<p>Afonar</p>
+
+</div>
+`,
+
+16: `
+<p>El otro día en el metro escuchaba un podcast que explicaba que hace unos años saltaron las alarmas porque hay niños que han dejado de jugar para ver cómo otros niños juegan. En YouTube son los llamados “niños <em>unboxers</em>”. Las cifras hablan por sí solas: “Ryan Pretend Play &#119;&#105;&#116;&#104; McDonalds Toys and cook toys food!”, 167 millones de reproducciones, “Diana and Roma play with Barbie Toys from Barbie Princess Adventure”, 267 millones de reproducciones, “Diana and her barbie car”, 2 billones de reproducciones. ¿Sirve esto también como descripción de nuestras horas en Internet?</p>
+
+<p>Mirando a mi alrededor todos los pasajeros sostenían un móvil entre las manos. De fondo sonaba la música del <em>Candy Crush</em>. A mi izquierda una señora hacía <em>scroll</em> infinito en <em>TikTok</em> sin que su expresión cambiara lo más mínimo: vídeos de <em>tradwives</em> cocinando pasteles, perfectamente metidas en la representación más heteronormativa de la maternidad. A mi derecha, un chico miraba uno de esos <em>reels</em> diseñados para que el principio y el final encajen perfectamente, creando un <em>loop</em> sin fin. Llevaba varios minutos viendo el mismo vídeo, al darse cuenta pasó a las <em>stories</em>.</p>
+
+<p>Pienso en las <em>stories</em> que consumimos a diario. Viajes de amigas, conciertos, fiestas, excursiones, puestas de sol. Influencers compartiendo el café de la mañana, la rutina de <em>skincare</em>, su pedida de matrimonio, la primera ecografía de su embarazo. Y entre todo esto, también aparecen las imágenes de la guerra en Gaza, de inmigrantes ahogados, de Valencia sacudida por la DANA.</p>
+
+<p>Pienso en el acto de hacerse una foto en el espejo con la cámara del móvil, como un espejo frente a un espejo. Esto me lleva a “La cámara lúcida”, donde Roland Barthes reflexiona sobre la fotografía:</p>
+
+<blockquote style="margin-left: 40px; color: #ccc;">
+Observé que una foto puede ser objeto de tres prácticas (o de tres emociones, o de tres intenciones): hacer, experimentar, mirar. El <em>Operator</em> es el Fotógrafo. <em>Spectator</em> somos los que compulsamos en los periódicos, libros, álbumes o archivos, colecciones de fotos. Y aquel o aquello que es fotografiado es el blanco, el referente, una especie de pequeño simulacro, de <em>eidôlon</em> emitido por el objeto, que yo llamaría de buen grado el <em>Spectrum</em> de la Fotografía porque esta palabra mantiene a través de su raíz una relación con «espectáculo» y le añade ese algo terrible que hay en toda fotografía: el retorno de lo muerto.
+</blockquote>
+
+<p>Barthes habla del fotógrafo y la relación con el “agujerito” (<em>sténopé</em>) a través del cual mira, encuadra y captura. ¿No son nuestros móviles ese mismo agujerito, una ventana abierta a la vida de otras personas, como una mirilla desde la que observar al vecino de al lado?</p>
+
+<p>Barthes también se detiene en el sujeto mirado y mirante. Cuando nos sentimos observados por el objetivo todo cambia: nos constituimos en el acto de posar, nos fabricamos instantáneamente otro cuerpo, nos transformamos por adelantado en imagen. Se abre una brecha entre lo que somos y aquello que aparece en la fotografía. ¿Pueden coincidir ambas cosas? ¿Cuántas lecturas posibles caben en un solo rostro?</p>
+
+<p>Frente a este juego social permanente, Barthes define la vida privada como el último refugio: ese espacio y ese tiempo en los que no somos una imagen, en los que no somos un objeto. Defender la vida privada es, para él, un derecho político fundamental: el derecho a seguir siendo sujeto.</p>
+
+<p>Quizá es un poco irónico que este calendario sea digital, pero creo que lejos de demonizar el Internet, debemos encontrar la manera de habitarlo, la manera de navegar sin disolvernos en la imagen y ser reducidos en el objeto, la manera de recuperar pequeños espacios en los que podamos ser sujetos.</p>
+
+<p>Y ahora, después de todo este tostón, solo me queda desearos que tengáis un muy buen día. Espero que esto haya servido como recordatorio para dejar un poquito el móvil a un lado (me incluyo). Como dice el meme que os dejo, abrir sin querer la cámara frontal y encontrarse a uno mismo absolutamente desprevenido y desde un ángulo bajo y feo es el mejor antídoto contra seguir con el <em>móvil</em> en la mano. Con haber sido, aunque solo sea, un 1% de efectiva que la situación que describe el meme, me conformo.</p>
+<br>
+<img src="fotos/meme.jpg" alt="">
+`,
+
+17: `<p>Voy de cuuuulo</p>
+`,
+  18:  `
+<p>Hoy he ido a mi última clase de la carrera y no lo sabía. Después de Navidad solo pisaré las aulas para hacer los exámenes. Ahora me arrepiento de haberme saltado alguna clase. Será raro no ver a la gente con la que he compartido estos últimos cuatro años. </p>
+A veces no sabemos que es la última vez que estamos haciendo algo. Cuando el Roc y yo lo dejamos, estuve a punto de pedirle un último beso porque no recordaba cuándo había sido la última vez que nos habíamos dado uno. No recuerdo si fue en su casa, paseando por el parc de Vallparadís o saliendo de la biblioteca un día cualquiera. Aquel día debió parecerme uno más, y sin saberlo fue el último. Ahora lo pienso y me quedaron muchas cosas que me habría gustado decirle. Si hubiera sabido que aquel día sería el último, lo habría dicho todo antes.</p>
+Me gustaría recordar cuándo fue la última vez que jugué un partido de básquet. Me gustaría poder recordar cuándo fue la última vez que la abuela Maruja me reconoció y me llamó por mi nombre, cuándo fue la última vez que nos hizo croquetas, qué canción fue la última que nos cantó. Me gustaría recordar cuándo fue la última vez que papá me dio un beso de buenas noches, cuándo fue la última vez que lo abracé antes de aquel 14 de julio.</p>
+
+<p>Recuerdo muchas primeras veces, pero no las últimas. El día en que, sin saberlo, hacemos algo por última vez, o escuchamos una voz, o miramos a alguien a quien queremos.</p>
+
+<p>Y quizá nunca sabrás cuándo es la última vez que haces algo, así que ante la duda, hazlo. Ve a la fiesta del pueblo de tu amiga. Mira los fuegos artificiales. Alarga la noche, alarga las sobremesas, alarga las partidas de cartas con amigos. Mira una película con tus compañeros de piso aunque ya la hayas visto mil veces. Ve a esa cena aunque al día siguiente tengas clase a las 8. Escucha un disco entero estirada en la cama mirando al techo. Conoce a gente nueva. Ponte ese vestido que te encanta pero que te da vergüenza ponerte. Cómete un helado de vainilla con cookies. Báñate en el mar con solo la luna iluminando el agua. Camina descalza sobre la hierba. Sal a correr por el faro. No te guardes las cosas y habla ahora que tienes la oportunidad. Levántate. Vuelve a empezar. Viaja aunque no lo tengas todo planificado. Pierde el tren. Canta como si nadie te escuchara. Lee hasta que se te cierren los ojos. Baila sola en tu habitación. Haz excursiones. Da los buenos días y besos de buenas noches. Celebra las pequeñas cosas. Brinda por ellas. Abraza fuerte. Rodéate de gente que te quiere. Quiérete, deja que te quieran y quiere. Mira a los ojos. Ríete hasta que te duela la tripa. Vibra alto. Vive.</p>
+
+<p>Hoy quizá sea la última vez de algo. Y aunque pensarlo me provoca una sensación triste, extraña y nostálgica, también me siento alegre y viva. Estoy viva. </p>
+
+<p>Hoy quizá sea la última vez de algo. Pero quizá, las últimas veces también puedan ser el principio de algo nuevo.</p>
+`,
+
+  21: ` <p>Hubo un tiempo donde el cambio climático aún no había matado las bañeras.</p>
+  <img src="fotos/banyera.png" alt="">
+`,
+
   22: `
 <div style="background:#fff; padding:20px; border-radius:12px; text-align:center;">
   <div class="carousel22">
@@ -194,15 +684,49 @@ const dataHTML = {
     <button onclick="nextImage22()">▶</button>
   </div>
 </div>
-`
+
+<style>
+.carousel22 img { width:100%; display:none; border-radius:10px; }
+.carousel22 img.active { display:block; }
+.carousel-buttons { margin-top:10px; display:flex; justify-content:center; gap:10px; }
+.carousel-buttons button {
+  padding:8px 16px; border:none; background:#000; color:#fff; cursor:pointer; border-radius:5px;
+}
+.carousel-buttons button:hover { background:#333; }
+</style>
+
+<script>
+let currentIndex22 = 0;
+const images22 = document.querySelectorAll('.carousel22 img');
+
+function showImage22(index) {
+  images22.forEach((img,i)=>img.classList.toggle('active', i===index));
+}
+
+function nextImage22() {
+  currentIndex22 = (currentIndex22 + 1) % images22.length;
+  showImage22(currentIndex22);
+}
+
+function prevImage22() {
+  currentIndex22 = (currentIndex22 - 1 + images22.length) % images22.length;
+  showImage22(currentIndex22);
+}
+
+showImage22(currentIndex22);
+</script>
+`,
+
 };
 
-// Configuración calendario
+
 const today = new Date().getDate();
 const cal = document.getElementById('calendar');
 let activeDay = null;
 
-function formatDate(day) { return `${day} de Diciembre`; }
+function formatDate(day) {
+  return `${day} de Diciembre`;
+}
 
 for (let i = 1; i <= 24; i++) {
   const door = document.createElement('div');
@@ -215,7 +739,9 @@ for (let i = 1; i <= 24; i++) {
 
   if (i > today) {
     btn.classList.add('locked');
-    btn.addEventListener('click', () => { openModalMessage("No seas tan impaciente chochoo"); });
+    btn.addEventListener('click', () => {
+      openModalMessage("No seas tan impaciente chochoo");
+    });
   } else {
     btn.addEventListener('click', () => {
       btn.classList.add('open');
@@ -233,8 +759,6 @@ function openModalContent(day) {
     `<p style="text-align:left; margin-bottom:20px; font-weight: normal;">${formatDate(day)}</p>` +
     dataHTML[day];
   document.getElementById('modal').style.display = 'block';
-
-  if(day === 22) initCarousel22();
 }
 
 function openModalMessage(msg) {
@@ -266,28 +790,6 @@ document.getElementById('intro').addEventListener('click', startCalendar);
 window.addEventListener('keydown', e => { if(e.key === 'Enter') startCalendar(); });
 window.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
 document.getElementById('modal').addEventListener('click', e => { if(e.target.id === 'modal') closeModal(); });
-
-// Carrusel día 22
-function initCarousel22() {
-  let currentIndex22 = 0;
-  const images22 = document.querySelectorAll('.carousel22 img');
-  if(!images22.length) return;
-
-  function showImage22(index) {
-    images22.forEach((img,i)=>img.classList.toggle('active', i===index));
-  }
-
-  window.nextImage22 = function() {
-    currentIndex22 = (currentIndex22 + 1) % images22.length;
-    showImage22(currentIndex22);
-  }
-  window.prevImage22 = function() {
-    currentIndex22 = (currentIndex22 - 1 + images22.length) % images22.length;
-    showImage22(currentIndex22);
-  }
-
-  showImage22(currentIndex22);
-}
 </script>
 
 </body>
